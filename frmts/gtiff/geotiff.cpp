@@ -15661,14 +15661,7 @@ TIFF *GTiffDataset::CreateLL( const char * pszFilename,
         }
     }
 #endif
-    if( bStreaming &&
-        !EQUAL( "NONE",
-                CSLFetchNameValueDef(papszParamList, "COMPRESS", "NONE")) )
-    {
-        ReportError( pszFilename, CE_Failure, CPLE_NotSupported,
-            "Streaming only supported to uncompressed TIFF" );
-        return nullptr;
-    }
+
     if( bStreaming && CPLFetchBool(papszParamList, "SPARSE_OK", false) )
     {
         ReportError( pszFilename, CE_Failure, CPLE_NotSupported,
